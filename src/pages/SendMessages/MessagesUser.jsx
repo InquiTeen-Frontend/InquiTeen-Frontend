@@ -34,7 +34,7 @@ export default function MessagesUser(){
             to:to,
             from:from
         }
-        const response = await fetch('http://localhost:3000/messages/newMessage',{
+        const response = await fetch('http://192.168.0.214:3000/messages/newMessage',{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json',

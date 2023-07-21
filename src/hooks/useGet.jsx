@@ -8,7 +8,7 @@ export default function useGet(path, token){
     const fetchData = async() =>{
         setLoading(true)
         try {
-            const response = await fetch(`http://localhost:3000/${path}`, {
+            const response = await fetch(`http://192.168.0.214:3000/${path}`, {
                 method:"GET",
                 headers:{
                     'x-access-token':token

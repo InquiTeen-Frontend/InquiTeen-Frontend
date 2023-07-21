@@ -1,7 +1,4 @@
-export const INITIAL_STATE = {
-  username:'ivann_garcilazo',
-  token:true
-}
+export const INITIAL_STATE = {}
 
 export const reducerAuth = ( state, action ) => {
     switch(action.type){
