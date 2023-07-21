@@ -8,6 +8,20 @@ export default function CopyLinkButton(){
     const { state } = useContext(ContextAuth)
 
     const handlerCopy = () => {
+        if(!state.username){
+          Swal.fire({
+            title:'You have to login first 😉',
+            text:'Or register if necessary',
+            position:'bottom',
+            backdrop:'none',
+            showConfirmButton:false,
+            timer:2500,
+            timerProgressBar:true
+          })
+          
+          return
+        }
+
         const url = `https://inquiteen.netlify.app/sendMessage/${state.username}`;
       
         const textField = document.createElement('input');

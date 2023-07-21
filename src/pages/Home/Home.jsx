@@ -1,23 +1,26 @@
 import { ContextAuth } from "../../components/ProviderAuth/ContextAuth";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
+import CopyLinkButton from "../../components/common/CopyLinkButton/CopyLinkButton";
 
 export default function Home(){
-
     const { state } = useContext(ContextAuth)
+
     return(
-        <main className="bg-white w-screen h-screen flex " style={{ background: 'linear-gradient(to bottom, rgb(126 34 206), rgb(206, 34, 156))' }}>
-            {/* Make component */}
-            
-            {/* Other component */}
-            <section className="w-4/6 h-full flex-col flex items-start justify-start p-5 pt-32 overflow-y-scroll text-slate-700 gap-5">
-                    <article className="w-5/6 rounded p-2 bg-slate-100 shadow-lg gap-3 flex flex-col border">
-                        <span>From: sdasd to <span className="underline cursor-pointer">userRandom</span></span>
-                        <div className="p-2">
-                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti nulla quis hic quia cum laborum, fugit, aperiam itaque iusto ipsam blanditiis mollitia culpa accusantium, sint nesciunt repudiandae consequatur ea corporis?</span>
-                        </div>
-                    </article>
+        <main className="bg-white w-screen h-screen flex pt-20" style={{ background: 'linear-gradient(to bottom, rgb(126 34 206), rgb(206, 34, 156))' }}>
+            <section className="mt-5 pl-4 flex flex-col gap-12 pr-4">
+                <div className="flex flex-col gap-6">
+                    <h1 className="text-6xl font-bold">What is InquiTeen? 👀</h1>
+                    <p className="text-xl"><b>InquiTeen</b> is an anonymous question page for users curious about what they think of themselves! 😋</p>
+                </div>
+                <div className="flex flex-col gap-6">
+                    <h3 className="text-4xl font-bold">How to use it?</h3>
+                    <p className="text-lg">It's simple to use! Copy the link to send you messages, to make it easier we leave it here below 😏</p>
+                    <CopyLinkButton />
+                    <p className="text-lg">
+                    And that's it! <b className="underline">Share it on the networks so everyone can send you secrets without fear!</b> 
+                    </p>
+                </div>
+                
             </section>
         </main>
     )
