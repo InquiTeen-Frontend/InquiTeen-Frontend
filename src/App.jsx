@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import MessagesUser from "./pages/SendMessages/MessagesUser";
 import ViewMessages from "./pages/VIewMessages/ViewMessages";
 import Settings from "./pages/Settings/Settings";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
               <Route path="/sendMessage/:username" element={<MessagesUser />} />
               <Route path='/viewMessages/:username' element={<ViewMessages />} />
               <Route path='/settings/:username' element={<Settings />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>
         </Router>
