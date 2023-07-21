@@ -1,10 +1,12 @@
 import { useRef } from "react"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function SignUp({submit, setError}){
     const usernameRef = useRef(null)
     const passwordRef = useRef(null)
     const repeatPasswordRef = useRef(null)
+    const navigate = useNavigate()
     const inputs = [
         {
             label:'Instagram username',
@@ -13,8 +15,8 @@ export default function SignUp({submit, setError}){
             refference:usernameRef
         },{
             label:'Password',
-            type:'Uhm... New password?',
-            placeholder:'Password',
+            type:'Password',
+            placeholder:'Uhm... New password?',
             refference:passwordRef
         },
         {
@@ -24,7 +26,7 @@ export default function SignUp({submit, setError}){
             refference:repeatPasswordRef
         },
     ]
-    const handlerToSubmit = (evt) =>{
+    const handlerToSubmit = async(evt) =>{
         evt.preventDefault()
         const username = usernameRef.current.value
         const password = passwordRef.current.value
@@ -41,7 +43,11 @@ export default function SignUp({submit, setError}){
             username:username,
             password:password
         }
-        submit(data, 'register')
+        const success = await submit(data, 'register')
+        if(success){
+            navigate('/users/signin')
+            return
+        }
     }
     return(
         <div className="flex flex-col gap-5 w-full">
@@ -51,7 +57,7 @@ export default function SignUp({submit, setError}){
                 inputs.map((data, index)=>(
                     <div key={index} className="flex flex-col w-full">
                         <label className="text-lg" htmlFor={data.placeholder}>{data.label}:</label>
-                        <input ref={data.refference} className="p-1 rounded text-sm focus:outline-none" type={data.type} placeholder={data.placeholder} />
+                        <input ref={data.refference} className="p-1 text-slate-700 rounded text-sm focus:outline-none" type={data.type} placeholder={data.placeholder} />
                     </div>
                 ))
                 }

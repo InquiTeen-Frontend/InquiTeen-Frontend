@@ -1,9 +1,12 @@
 import { useRef } from "react"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+
 
 export default function SignIn({submit}){
     const usernameRef = useRef(null)
     const passwordRef = useRef(null)
+    const navigate = useNavigate()
     const inputs = [
         {
             label:'Username',
@@ -18,7 +21,7 @@ export default function SignIn({submit}){
         },
     ]
 
-    const handlerToSubmit = (evt) =>{
+    const handlerToSubmit = async(evt) =>{
         evt.preventDefault()
         const username = usernameRef.current.value
         const password = passwordRef.current.value
@@ -28,7 +31,12 @@ export default function SignIn({submit}){
             password:password
         }
 
-        submit(data, 'login')
+        const success = await submit(data, 'login')
+        if(success){
+            navigate('/')
+        }
+        
+        
     }
 
     return(

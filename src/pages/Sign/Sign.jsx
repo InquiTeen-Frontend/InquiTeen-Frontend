@@ -6,17 +6,15 @@ import { useState } from "react"
 import { useContext } from "react"
 import { ContextAuth } from "../../components/ProviderAuth/ContextAuth"
 import { TYPES } from "../../components/ProviderAuth/Types"
-import { useNavigate } from "react-router-dom"
 
 export default function Sign(){
     const { typesign } = useParams()
     const [ error, setError ] = useState(false)
 
-    const { dispatch, state }= useContext(ContextAuth)
-    const navigate = useNavigate()
+    const { dispatch }= useContext(ContextAuth)
     const handlerSubmit = async(data, path ) => {  
         try {
-            const response = await fetch(`http://localhost:3000/users/${path}`,{
+            const response = await fetch(`http://192.168.0.214:3000/users/${path}`,{
                 method:'POST',
                 headers:{
                     'Content-Type': 'application/json',
@@ -30,7 +28,7 @@ export default function Sign(){
                     setTimeout(()=>{
                         setError(false)
                     }, 2000)
-                    return
+                    return false
                 }
                 throw new Error
             }
@@ -40,10 +38,10 @@ export default function Sign(){
                 type:TYPES.ADD_DATA,
                 payload:responseJson
             })
+            return true
 
-            navigate('/')
         } catch (error) {
-            console.error(error)
+            return false
         }
     }
 
@@ -55,7 +53,7 @@ export default function Sign(){
                     {typesign==='signup'?<SignUp submit={handlerSubmit} setError={setError}/>:<SignIn submit={handlerSubmit} />}
                     <img src={girl} alt="" width={300} />
                 </div>
-                <span className='font-semibold text-red-500'>{error&&error.message}</span>
+                <span className='font-semibold text-white'>{error&&error.message}</span>
             </div>
             
         </main>

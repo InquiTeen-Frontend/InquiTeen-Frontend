@@ -11,7 +11,7 @@ export default function MessageCard({data, handlerAddComment}){
                             {
                             data.comments.map((comments, index)=>{
                                 return(
-                                    <li key={index} className="border w-full break-words">{comments.from}:{comments.message}</li>
+                                    <li key={index} className="w-full break-words">{comments.from}: {comments.message}</li>
                                 )
                             })
                             }
@@ -23,7 +23,7 @@ export default function MessageCard({data, handlerAddComment}){
                         handlerAddComment(e, data._id)
                         }
                     }>
-                        <input type="text" placeholder="Add new comment" className="p-1 w-full" />
+                        <input type="text" placeholder="Add new comment" className="p-1 w-full text-slate-700" />
                         <button className="bg-purple-700 text-white rounded pl-2 pr-2">{'>'}</button>
                     </form>
                 </div>
