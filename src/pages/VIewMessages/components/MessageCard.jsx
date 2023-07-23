@@ -1,33 +1,38 @@
-export default function MessageCard({data, handlerAddComment}){
+import { useState } from 'react'
+import screenshot from '../../../assets/pages/screenshot.svg'
+import ScreenshotMode from './ScreenshotMode'
+export default function MessageCard({data}){
+
+    const [ open, setOpen ] = useState(false)
+
+    const getRandomEmoji = (arr) =>{
+        const lengthEmojis = arr.length
+        const emoji = Math.floor(Math.random()*lengthEmojis)
+        return arr[emoji]
+    }
+
     return(
         <article className="w-full h-fit bg-slate-100 shadow-xl text-slate-600 rounded p-2 flex flex-col gap-2">
-            <span>From: <span className="underline">{data.from}</span></span>
-            <p>{data.message}</p>
-            <div className="p-1" style={{borderTop:'1px solid rgba(0,0,0,0.1)'}}>
-                <div className="w-full flex items-center justify-center flex-col gap-3">
-                    <details className="h-fit h-max-32 overflow-y-scroll self-start w-full">
-                        <summary>View comments {`[${data.comments.length}]`}</summary>
-                        <ul className="flex flex-col h-max-20 gap-2 items-start pl-4 justify-center">
-                            {
-                            data.comments.map((comments, index)=>{
-                                return(
-                                    <li key={index} className="w-full break-words">{comments.from}: {comments.message}</li>
-                                )
-                            })
-                            }
-                        </ul>
-                    </details>
-                    
-                    <form action="" className="flex text-white w-full text-slate-600" onSubmit={(e)=>{
-                        e.preventDefault()
-                        handlerAddComment(e, data._id)
-                        }
-                    }>
-                        <input type="text" placeholder="Add new comment" className="p-1 w-full text-slate-700" />
-                        <button className="bg-purple-700 text-white rounded pl-2 pr-2">{'>'}</button>
-                    </form>
-                </div>
+            <span className="flex items-center justify-start gap-2"><span className="text-4xl">{getRandomEmoji(emojis)}</span>
+                <span className="underline text-lg">{data.from}</span>
+            </span>
+            <p className='text-xl'>{data.message}</p>
+            <div className="p-2 flex justify-end" style={{borderTop:'1px solid rgba(0,0,0,0.1)'}}>
+                {/* Add handler for screenshot mode */}
+                    <button className="bg-purple-600 p-1 rounded text-white flex items-center gap-2" onClick={()=>setOpen(!open)}>
+                        <img src={screenshot} width={30} alt="" />
+                        <span>Screenshot mode</span>
+                    </button>
+                    {open&&<ScreenshotMode data={data} setOpen={setOpen} />}
             </div>
         </article>
     )
 }
+
+const emojis = [ "😄", "😆", "😂", "🤣", "😊", "😍", "🤩", "😋", "🤪", "😜",
+    "😎", "🥳", "🤗", "😇", "🥰", "😛", "😝", "🤑", "🤓", "😏",
+    "😈", "👻", "🤖", "🎃", "🦄", "🐿️", "🐧", "🦁", "🐸", "🐢",
+    "🦕", "🦖", "🍄", "🍔", "🍕", "🍦", "🍩", "🍿", "🎂", "🍰",
+    "🍭", "🍪", "🍓", "🍉", "🥝", "🍌", "🍆", "🥔", "🥞", "🍟",
+    "🍔", "🥪", "🍿", "🍕", "🍝", "🌮", "🍱", "🍛", "🍜", "🍣",
+    "🍤", "🍙", "🍚", "🥘"]
