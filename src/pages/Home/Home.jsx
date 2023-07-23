@@ -1,12 +1,13 @@
 import { ContextAuth } from "../../components/ProviderAuth/ContextAuth";
 import { useContext } from "react";
 import CopyLinkButton from "../../components/common/CopyLinkButton/CopyLinkButton";
+import { Link } from "react-router-dom";
 
 export default function Home(){
     const { state } = useContext(ContextAuth)
 
     return(
-        <main className="bg-white w-screen h-screen flex pt-20" style={{ background: 'linear-gradient(to bottom, rgb(126 34 206), rgb(206, 34, 156))' }}>
+        <main className="bg-white w-screen pb-20 flex pt-20" style={{ background: 'linear-gradient(to bottom, rgb(126 34 206), rgb(206, 34, 156))' }}>
             <section className="mt-5 pl-4 flex flex-col gap-12 pr-4">
                 <div className="flex flex-col gap-6">
                     <h1 className="text-6xl font-bold">What is InquiTeen? 👀</h1>
@@ -19,6 +20,10 @@ export default function Home(){
                     <p className="text-lg">
                     And that's it! <b className="underline">Share it on the networks so everyone can send you secrets without fear!</b> 
                     </p>
+                    <b className="text-5xl">Ready?</b>
+                    <Link to={!state.username?`/users/signin`:`/viewMessages/${state.username}`} className="shadow-xl bg-slate-100 text-purple-700 p-2 rounded flex justify-around">
+                        View your messages here! 🤩
+                    </Link >
                 </div>
                 
             </section>
