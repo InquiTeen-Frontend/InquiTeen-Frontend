@@ -6,26 +6,27 @@ import MessageCard from "./components/messageCard"
 import CopyLinkButton from "../../components/common/CopyLinkButton/CopyLinkButton"
 import Loader from "../../components/common/Loader/Loader"
 import NothingToSee from "./components/NothingToSee"
+import ErrorModal from "../../components/common/ErrorModal/ErrorModal"
 
 export default function ViewMessages(){
     const { username } = useParams()
     const { state } = useContext(ContextAuth)
-    const { data, loading} = useGet(`messages/${state.username}`, state.token)
-
-   
+    const { data, loading, error} = useGet(`messages/${state.username}`, state.token)
     
-    if(!data || loading ){
-        return(
-           <Loader />
-        )
+    if(error?.message){
+        return <ErrorModal title={'Error :('} text={error.message.includes('jwt')?'Your session has expired 😣':error.message} icon='error' />
     }
-
     if(state.username !== username){
         return(
             <NothingToSee />
         )
     }
-
+    if(!data || loading ){
+        return(
+           <Loader />
+        )
+    }
+   
     const reverseData = Array.from(data).reverse()
 
     return(
@@ -37,7 +38,7 @@ export default function ViewMessages(){
                         <h1 className="text-4xl font-bold">Ups... {':('}</h1>
                         <div className="flex flex-col gap-4">
                             <h5>You dont have any messages yet!</h5>
-                            <span>But <b>don't worry...</b></span>
+                            <span>But <b>don&apos;t worry...</b></span>
                             <CopyLinkButton />
                         </div>
                     </div>

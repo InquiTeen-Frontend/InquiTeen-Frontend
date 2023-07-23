@@ -22,7 +22,7 @@ export default function CopyLinkButton(){
           return
         }
 
-        const url = `http://192.168.0.214:5173/sendMessage/${state.username}`;
+        const url = `:5173/sendMessage/${state.username}`;
       
         const textField = document.createElement('input');
         textField.style.opacity = 0;

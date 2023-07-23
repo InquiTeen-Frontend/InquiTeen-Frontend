@@ -1,18 +1,19 @@
 import { useState } from "react"
+import { envConfig } from "../../env-config";
 
 export default function usePost(){
     const [ loading, setLoading ] = useState(false)
     const [ error, setError ] = useState(false)
     const [ response, setResponse ] = useState([])
 
-    const handlerSubmit = async(path, body, token) => {
+    const handlerSubmit = async(path, body, token, method) => {
         setLoading(true)
         try {
-            const response = await fetch(`http://192.168.0.214:3000/${path}`,{
-                method:'POST',
+            const response = await fetch(`${envConfig.PORT_BACKEND}/${path}`,{
+                method:method||'POST',
                 headers:{
                     'Content-Type': 'application/json',
-                    'x-access-token':token || null
+                    'access-token':token || null
                 },
                 body:JSON.stringify(body)
             })
@@ -29,9 +30,10 @@ export default function usePost(){
                 throw new Error
             }
             setResponse(message)
+            setLoading(false)
         } catch (error) {
             setError({message:'An error unexpected'})
-            setLoading(true)           
+            setLoading(false)
         }
     }
 

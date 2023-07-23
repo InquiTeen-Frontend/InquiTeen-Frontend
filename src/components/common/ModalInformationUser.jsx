@@ -1,10 +1,9 @@
-import Swal from "sweetalert2";
 import { ContextAuth } from "../ProviderAuth/ContextAuth";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import CopyLinkButton from "./CopyLinkButton/CopyLinkButton";
 
-export default function ModalInformationUser(){
+export default function ModalInformationUser({setBurgerStatus}){
     const { state } = useContext(ContextAuth)
 
     return(
@@ -13,7 +12,7 @@ export default function ModalInformationUser(){
                 <article className="w-96 rounded-lgflex items-center justify-center flex-col p-2 pt-5 text-slate-100" >
                     <div className="h-1/2 w-full flex items-center justify-center gap-2">
                         <CopyLinkButton />                       
-                        <Link to={`/viewMessages/${state.username}`} className="bg-purple-600 text-white p-2 rounded">View own messages</Link >
+                        <Link onClick={()=>{setBurgerStatus(false)}} to={`/viewMessages/${state.username}`} className="bg-purple-600 text-white p-2 rounded">View own messages</Link >
                     </div>
                 </article>
             </section>

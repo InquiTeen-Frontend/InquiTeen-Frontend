@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { envConfig } from "../../env-config";
 
 export default function useGet(path, token){
     const [ error, setError ] = useState(false)
@@ -8,15 +9,19 @@ export default function useGet(path, token){
     const fetchData = async() =>{
         setLoading(true)
         try {
-            const response = await fetch(`http://192.168.0.214:3000/${path}`, {
+            const response = await fetch(`${envConfig.PORT_BACKEND}/${path}`, {
                 method:"GET",
                 headers:{
-                    'x-access-token':token
+                    'access-token':token
                 }
             })
             const responseMessage = await response.json()
+
             if(!response.ok){
-                console.log(responseMessage)
+                if(responseMessage.message){
+                    setError(responseMessage)
+                    return
+                }
                 throw new Error
             }
             setData(responseMessage)
