@@ -3,6 +3,7 @@ import { useRef, useState } from "react"
 import Swal from "sweetalert2"
 import dice from '../../assets/components/dice.svg'
 import { getRandomName } from "./utils"
+import { envConfig } from "../../../env-config"
 
 export default function MessagesUser(){
     const { username } = useParams()
@@ -37,7 +38,7 @@ export default function MessagesUser(){
             to:to,
             from:from
         }
-        const response = await fetch('http://192.168.0.214:3000/messages/newMessage',{
+        const response = await fetch(`${envConfig.PORT_BACKEND}/messages/newMessage`,{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json',

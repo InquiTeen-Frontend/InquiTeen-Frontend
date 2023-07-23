@@ -15,10 +15,10 @@ export default function Home(){
                 </div>
                 <div className="flex flex-col gap-6">
                     <h3 className="text-4xl font-bold">How to use it?</h3>
-                    <p className="text-lg">It's simple to use! Copy the link to send you messages, to make it easier we leave it here below 😏</p>
+                    <p className="text-lg">It&apos;s simple to use! Copy the link to send you messages, to make it easier we leave it here below 😏</p>
                     <CopyLinkButton />
                     <p className="text-lg">
-                    And that's it! <b className="underline">Share it on the networks so everyone can send you secrets without fear!</b> 
+                    And that&apos;s it! <b className="underline">Share it on the networks so everyone can send you secrets without fear!</b> 
                     </p>
                     <b className="text-5xl">Ready?</b>
                     <Link to={!state.username?`/users/signin`:`/viewMessages/${state.username}`} className="shadow-xl bg-slate-100 text-purple-700 p-2 rounded flex justify-around">

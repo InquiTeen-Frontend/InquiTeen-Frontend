@@ -12,7 +12,7 @@ export default function Header(){
 
     return(
          <header className="p-5 fixed top-0 w-screen bg-slate-100 flex items-center justify-around">
-            <Link to={'/'}>
+            <Link onClick={()=>{setBurgerStatus(false)}} to={'/'}>
                 <h1 style={{
                     backgroundClip: 'text',
                     WebkitBackgroundClip: 'text',
@@ -25,20 +25,21 @@ export default function Header(){
                     InquiTeen
                 </h1>
             </Link>
+
             <div className="flex gap-3 items-center justify-center">
-            {
-            state.token?(      
-            <button onClick={()=>setBurgerStatus(!burgerStatus)} className="z-10">
-                <img src={burgerStatus?close:menu} width={30} alt="" />
-            </button>
-            ):
-            (
-            <>
-                <Link className="p-1 rounded bg-purple-600 font-semibold text-lg" to={'/users/signup'}>Sign Up</Link>
-                <Link className="text-slate-700 font-semibold text-lg" to={'/users/signin'}>Sign In</Link>
-            </>
-            )
-            }
+                {
+                state.token?(      
+                <button onClick={()=>setBurgerStatus(!burgerStatus)} className="z-10">
+                    <img src={burgerStatus?close:menu} width={30} alt="" />
+                </button>
+                ):
+                (
+                <>
+                    <Link className="p-1 rounded bg-purple-600 font-semibold text-lg" to={'/users/signup'}>Sign Up</Link>
+                    <Link className="text-slate-700 font-semibold text-lg" to={'/users/signin'}>Sign In</Link>
+                </>
+                )
+                }
             </div>
             {
                 burgerStatus&&<Burger state={state} dispatch={dispatch} setBurgerStatus={setBurgerStatus} />
