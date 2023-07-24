@@ -62,7 +62,10 @@ export default function MessagesUser(){
             }
             Swal.fire({
                 icon:'success',
-                title:'Message sended ;)'
+                title:'Message sended ;)',
+                showConfirmButton:false,
+                timer:2500,
+                timerProgressBar:true
             }).then(()=>{
                 navigate('/')
             })
