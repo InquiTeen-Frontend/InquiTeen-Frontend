@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { ContextAuth } from "../../ProviderAuth/ContextAuth";
 import copyClipboard from '../../../assets/components/copyClipboard.svg'
+import { envConfig } from "../../../../env-config";
 
 
 export default function CopyLinkButton(){
@@ -22,7 +23,7 @@ export default function CopyLinkButton(){
           return
         }
 
-        const url = `:5173/sendMessage/${state.username}`;
+        const url = `${envConfig.PORT_HOST}/sendMessage/${state.username}`;
       
         const textField = document.createElement('input');
         textField.style.opacity = 0;
