@@ -4,7 +4,7 @@ import Sign from "./pages/Sign/Sign";
 import ProviderAuth from "./components/ProviderAuth/ProviderAuth";
 import Home from "./pages/Home/Home";
 import MessagesUser from "./pages/SendMessages/MessagesUser";
-import ViewMessages from "./pages/ViewMessages/ViewMessages";
+import ViewMessages from "./pages/VIewMessages/ViewMessages";
 import Settings from "./pages/Settings/Settings";
 import NotFound from "./pages/NotFound/NotFound";
 
