@@ -4,6 +4,7 @@ import Swal from "sweetalert2"
 import dice from '../../assets/components/dice.svg'
 import { getRandomName } from "./utils"
 import { envConfig } from "../../../env-config"
+import { useNavigate } from "react-router-dom"
 
 export default function MessagesUser(){
     const { username } = useParams()
@@ -26,6 +27,7 @@ export default function MessagesUser(){
         },
     ]
     const [ error, setError ] = useState(false)
+    const navigate = useNavigate()
 
     const handlerSubmit = async(e) =>{
         e.preventDefault()
@@ -61,6 +63,8 @@ export default function MessagesUser(){
             Swal.fire({
                 icon:'success',
                 title:'Message sended ;)'
+            }).then(()=>{
+                navigate('/')
             })
         } catch (error) {
             Swal.fire({
