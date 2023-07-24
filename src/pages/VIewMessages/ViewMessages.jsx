@@ -4,7 +4,7 @@ import { useContext } from "react"
 import useGet from "../../hooks/useGet"
 import MessageCard from "./components/MessageCard"
 import CopyLinkButton from "../../components/common/CopyLinkButton/CopyLinkButton"
-import Loader from "../../components/common/Loader/Loader"
+import Loader from "../../components/common/Loader/Loader" 
 import NothingToSee from "./components/NothingToSee"
 import ErrorModal from "../../components/common/ErrorModal/ErrorModal"
 
