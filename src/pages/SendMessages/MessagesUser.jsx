@@ -90,7 +90,7 @@ export default function MessagesUser(){
                                 (
                                 <div className="flex gap-2">
                                     <input className="p-1 w-5/6 border focus:outline-purple-400" type={data.type} placeholder={data.placeholder} ref={data.refference} value={data.value} onChange={(e)=>setValueName(e.target.value)} />
-                                    <button className="p-1 border rounded-xl flex items-center justify-center" onClick={()=>setValueName(getRandomName)}>
+                                    <button className="p-1 border rounded-xl flex items-center justify-center" type='button' onClick={()=>setValueName(getRandomName)}>
                                         <img src={dice} width={30} alt="" />
                                     </button>
                                 </div>
@@ -99,7 +99,7 @@ export default function MessagesUser(){
                         </div>
                     ))
                     }
-                    <button className="p-1 bg-purple-700 text-white rounded font-bold self-center p-2 text-xl">Send {';)'}</button>
+                    <button type="submit" className="p-1 bg-purple-700 text-white rounded font-bold self-center p-2 text-xl">Send {';)'}</button>
                 </form>
                 {error&&<span className="text-red-600 font-semibold">{error.message}</span>}
             </article>
